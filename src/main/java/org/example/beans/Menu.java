@@ -1,7 +1,9 @@
 package org.example.beans;
 
+import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
+@Component
 public class Menu {
 
     Scanner scanner  = new Scanner(System.in);
@@ -12,19 +14,36 @@ public class Menu {
 
     //todo написать меню и его обработку
 
+
+
+    private Boolean flag = true;
+
+
     public void printMenu() {
-        while(true) {
-            menu();
-        }
+//        while(flag) {
+//            menu();
+//
+//            switch (userInput) {
+//                case 1 -> System.out.println();
+//                case 2 -> System.out.println();
+//                case 3 -> System.out.println();
+//                case 4 -> System.out.println();
+//                case 5 -> System.out.println();
+//                case 0 -> flag = false;
+//            }
+//        }
+        System.out.println("Menu!");
     }
 
     //todo
     public static void menu() {
         System.out.println("Здравствуйте!");
         System.out.println("Что вы хотите сделать? ");
-        System.out.println("1 - Ввести количество шагов за определённый день");
-        System.out.println("2 - Напечатать статистику за определённый месяц");
-        System.out.println("3 - Изменить цель по количеству шагов в день");
-        System.out.println("0 - Выйти из приложения");
+        System.out.println("1 - Создать контакт");
+        System.out.println("2 - Удалить контакт");
+        System.out.println("3 - Вывести список контактов на экран");
+        System.out.println("4 - Сохранить в файл");
+        System.out.println("5 - Загрузить из файла");
+        System.out.println("0 - Выход");
     }
 }

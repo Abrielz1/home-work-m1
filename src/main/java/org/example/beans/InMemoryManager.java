@@ -1,14 +1,27 @@
 package org.example.beans;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.example.model.Person;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Scope("singleton")
-@Component
-@RequiredArgsConstructor
-public class InMemoryManager implements MemoryHolder {
+import java.util.HashMap;
+import java.util.Map;
 
+//@Scope("singleton")
+@Component
+@Data
+//@RequiredArgsConstructor
+public class InMemoryManager implements EnvMemoryHolder {
+
+
+    private final Map<String, Person> dump = new HashMap<>();
+
+
+    @Value("{app.env}")
+    public String env;
 
 
     public void removeByEmail() {
@@ -18,7 +31,7 @@ public class InMemoryManager implements MemoryHolder {
 
     @Override
     public void loadTasks() {
-
+        System.out.println("load from memory");
     }
 
     @Override
