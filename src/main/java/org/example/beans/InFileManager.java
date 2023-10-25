@@ -11,6 +11,7 @@ import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -37,11 +38,34 @@ public class InFileManager implements EnvMemoryHolder {
     public InFileManager(InMemoryManager manager) {
         this.manager = manager;
     }
+
+    //todo логику считывания из файла
+
+    private String[] readFromFile() {
+        try {
+
+           return Files.readString(Path.of(PATH), StandardCharsets.UTF_8).split(System.lineSeparator());
+        } catch (IOException err) {
+            throw new ManagerSaveException("Ошибка при восстановлении данных");
+        }
+
+    }
+
     @Override
     public void loadTasks() {
-        System.out.println("load from file");
+       String[] lines = readFromFile();
+
+       for (int i = 0; i < lines.length; i++) {
+           String line = lines[i];
+           String[] content = line.split("\\;");
+           String fullName = content[0];
+           String phoneNumber = content[1];
+           String email = content[2];
+           Person person = new Person(fullName, phoneNumber, email);
+           manager.putPersonToMap(person);
+       }
     }
-        //todo логику считывания из файла
+
 
     @Override
     public void saveTasks() {
