@@ -8,10 +8,7 @@ public class Menu {
 
     Scanner scanner  = new Scanner(System.in);
 
-
     //todo написать меню и его обработку
-
-
 
     private Boolean flag = true;
 
@@ -22,6 +19,7 @@ public class Menu {
             int userInput = scanner.nextInt();
 
             String personInput = scanner.nextLine();
+
             menu();
 
             switch (userInput) {

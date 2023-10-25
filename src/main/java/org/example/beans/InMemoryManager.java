@@ -1,6 +1,8 @@
 package org.example.beans;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +15,10 @@ import java.util.Map;
 @Scope("singleton")
 @Component
 @Data
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class InMemoryManager implements EnvMemoryHolder {
 
+    private final InFileManager file;
 
     private final Map<String, Person> dump = new HashMap<>();
 
@@ -41,12 +44,12 @@ public class InMemoryManager implements EnvMemoryHolder {
     //todo логику загрузки из файла в мапу
     @Override
     public void loadTasks() {
-        System.out.println("load from memory");
+        file.loadTasks();
     }
 
     //todo логику загрузки из мапы в файл
     @Override
     public void saveTasks() {
-
+        file.saveTasks();
     }
 }
