@@ -1,12 +1,19 @@
 package org.example.beans;
 
+import lombok.RequiredArgsConstructor;
+import org.example.model.Person;
 import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
+@RequiredArgsConstructor
 public class Menu {
 
-    Scanner scanner  = new Scanner(System.in);
+    private final InFileManager file;
+
+    private final InMemoryManager memory;
+
+   private Scanner scanner  = new Scanner(System.in);
 
     //todo написать меню и его обработку
 
@@ -23,7 +30,17 @@ public class Menu {
             menu();
 
             switch (userInput) {
-                case 1 -> System.out.println("1");
+                case 1 -> {
+                    System.out.println("""
+                            Please enter Person's personal info in fields:
+                            1st Enter persons full name,
+                            then enter phone number (like +8@@@@@@@) in 8digits and 
+                            at last email
+                            """);
+                    Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
+                    memory.putPersonToMap(person);
+                 //   System.out.println("Person with e-email: " + person.getEmail() + "person personal info was created: " + person);
+                }
                 case 2 -> System.out.println("2");
                 case 3 -> System.out.println("3");
                 case 4 -> System.out.println("4");

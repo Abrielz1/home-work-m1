@@ -22,5 +22,4 @@ public class InMemoryConfig {
     public EnvMemoryHolder memoryHolder() {
         return new InMemoryManager(fileManager);
     }
-
 }

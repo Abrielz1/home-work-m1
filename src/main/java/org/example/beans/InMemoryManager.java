@@ -38,7 +38,7 @@ public class InMemoryManager implements EnvMemoryHolder {
 
     public void putPersonToMap(Person person) {
         dump.put(person.getEmail(), person);
-        System.out.println("person on the map, the key is: " + dump.get(person).getEmail());
+   //     System.out.println("person on the map, the key is: " + dump.get(person).getEmail());
     }
 
     //todo логику загрузки из файла в мапу
