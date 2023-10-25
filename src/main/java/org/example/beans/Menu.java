@@ -42,10 +42,12 @@ public class Menu {
                     memory.putPersonToMap(person);
                     System.out.println(memory.getDump());
                 }
+
                 case 2 -> {
                     System.out.println("If you want to remove person, enter his/her email");
                     memory.removeByEmail(scanner.nextLine());
                 }
+
                 case 3 -> System.out.println("3");
                 case 4 -> System.out.println("4");
                 case 5 -> System.out.println("5");
