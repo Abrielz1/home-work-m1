@@ -25,7 +25,6 @@ public class InFileManager implements EnvMemoryHolder {
 
     private final static String PATH = "resources\\data.csv";
 
-
     @Value("{app.env}")
     public String env;
 
@@ -39,22 +38,17 @@ public class InFileManager implements EnvMemoryHolder {
         } catch (IOException err) {
             throw new ManagerSaveException("Ошибка при восстановлении данных");
         }
-
     }
 
     @Override
-    public void loadTasks() {
+    public void loadPersons() {
 
         String[] lines = readFromFile();
 
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             String[] content = line.split("\\;");
-            String fullName = content[0];
-            String phoneNumber = content[1];
-            String email = content[2];
-            Person person = new Person(fullName, phoneNumber, email);
-            manager.putPersonToMap(person);
+            manager.putPersonToMap(new Person(content[0], content[1], content[2]));
         }
     }
 

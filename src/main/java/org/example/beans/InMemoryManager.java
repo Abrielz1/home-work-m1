@@ -36,11 +36,10 @@ public class InMemoryManager implements EnvMemoryHolder {
     }
 
     @Override
-    public void loadTasks() {
+    public void loadPersons() {
     }
 
     @Override
     public void saveTasks() {
-
     }
 }

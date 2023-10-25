@@ -15,8 +15,6 @@ public class Menu {
 
    private Scanner scanner  = new Scanner(System.in);
 
-    //todo написать меню и его обработку
-
     private Boolean flag = true;
 
 
@@ -24,8 +22,6 @@ public class Menu {
         while(flag) {
 
             int userInput = scanner.nextInt();
-
-            String personInput = scanner.nextLine();
 
             menu();
 
@@ -38,10 +34,7 @@ public class Menu {
                             at last email
                             """);
                     Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
-//                    System.out.println(person);
                     memory.putPersonToMap(person);
-//                    System.out.println(memory.getDump());
-//                    System.out.println(memory.dump.size());
                 }
 
                 case 2 -> {
@@ -51,7 +44,7 @@ public class Menu {
 
                 case 3 -> memory.printMap();
                 case 4 -> file.saveTasks();
-                case 5 -> file.loadTasks();
+                case 5 -> file.loadPersons();
                 case 0 -> flag = false;
             }
         }

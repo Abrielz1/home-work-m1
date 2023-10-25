@@ -2,7 +2,7 @@ package org.example.beans;
 
 public interface EnvMemoryHolder {
 
-    void loadTasks();
+    void loadPersons();
 
     void saveTasks();
 
