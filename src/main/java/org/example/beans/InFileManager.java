@@ -23,16 +23,20 @@ import static java.util.Collections.addAll;
 @Component
 @Data
 @Primary
-@RequiredArgsConstructor
+
 public class InFileManager implements EnvMemoryHolder {
 
     private InMemoryManager manager;
 
-    private final static String PATH = "resources\\dump\\data.csv";
+    private final static String PATH = "resources\\data.csv";
+
 
     @Value("{app.env}")
     public String env;
 
+    public InFileManager(InMemoryManager manager) {
+        this.manager = manager;
+    }
     @Override
     public void loadTasks() {
         System.out.println("load from file");
@@ -46,8 +50,7 @@ public class InFileManager implements EnvMemoryHolder {
             Path path = Path.of(PATH);
             String data = personToString() + System.lineSeparator();
 
-            Files.writeString(path, data);
-
+           Files.writeString(path, data);
         } catch (IOException e) {
             throw new ManagerSaveException("Ошибка, при записи файла произошел сбой!");
         }
@@ -55,10 +58,13 @@ public class InFileManager implements EnvMemoryHolder {
 
     private String personToString() {
         StringBuilder stringBuilder = new StringBuilder();
-        List<Person> taskDump = new ArrayList<>();
-        System.out.println(taskDump);
+        List<Person> taskDump = new ArrayList<>(manager.getDump().values());
+        System.out.println(taskDump.size());
             for (Person i: taskDump) {
-                stringBuilder.append(i).append(System.lineSeparator());
+                stringBuilder.append(i.getFullName()).append(";")
+                        .append(i.getPhoneNumber()).append(";")
+                        .append(i.getEmail())
+                        .append(System.lineSeparator());
             }
         return stringBuilder.toString();
     }

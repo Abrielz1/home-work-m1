@@ -18,7 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class InMemoryManager implements EnvMemoryHolder {
 
-    public static final Map<String, Person> dump = new HashMap<>();
+    private final Map<String, Person> dump = new HashMap<>();
 
 
     @Value("{app.env}")

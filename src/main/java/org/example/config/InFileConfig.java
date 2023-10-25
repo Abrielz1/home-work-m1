@@ -24,7 +24,7 @@ public class InFileConfig {
 
     @Bean
     public EnvMemoryHolder memoryHolder() {
-        return new InFileManager();
+        return new InFileManager(memory);
     }
 
     @Bean
