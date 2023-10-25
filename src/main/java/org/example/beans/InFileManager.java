@@ -24,7 +24,7 @@ public class InFileManager implements EnvMemoryHolder {
 
     @Override
     public void saveTasks() {
-
+        System.out.println("save to file!");
     }
     //todo логику считывания и записи в файл
 }
