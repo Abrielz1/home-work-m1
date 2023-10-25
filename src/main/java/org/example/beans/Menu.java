@@ -48,9 +48,9 @@ public class Menu {
                     memory.removeByEmail(scanner.nextLine());
                 }
 
-                case 3 -> System.out.println("3");
-                case 4 -> System.out.println("4");
-                case 5 -> System.out.println("5");
+                case 3 -> memory.printMap();
+                case 4 -> memory.saveTasks();
+                case 5 -> memory.loadTasks();
                 case 0 -> flag = false;
             }
         }
