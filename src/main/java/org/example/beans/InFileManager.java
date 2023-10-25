@@ -56,6 +56,7 @@ public class InFileManager implements EnvMemoryHolder {
     private String personToString() {
         StringBuilder stringBuilder = new StringBuilder();
         List<Person> taskDump = new ArrayList<>(manager.getDump().values());
+        System.out.println(taskDump);
             for (Person i: taskDump) {
                 stringBuilder.append(i).append(System.lineSeparator());
             }
