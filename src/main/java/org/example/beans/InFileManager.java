@@ -34,6 +34,7 @@ public class InFileManager implements EnvMemoryHolder {
 
     private String[] readFromFile() {
         try {
+
             return Files.readString(Path.of(PATH), StandardCharsets.UTF_8).split(System.lineSeparator());
         } catch (IOException err) {
             throw new ManagerSaveException("Ошибка при восстановлении данных");
@@ -42,7 +43,6 @@ public class InFileManager implements EnvMemoryHolder {
 
     @Override
     public void loadPersons() {
-
         String[] lines = readFromFile();
 
         for (int i = 0; i < lines.length; i++) {
@@ -56,7 +56,6 @@ public class InFileManager implements EnvMemoryHolder {
     @Override
     public void saveTasks() {
         try {
-
             Path path = Path.of(PATH);
             String data = personToString() + System.lineSeparator();
 
