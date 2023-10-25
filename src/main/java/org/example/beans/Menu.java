@@ -38,10 +38,10 @@ public class Menu {
                             at last email
                             """);
                     Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
-                    System.out.println(person);
+//                    System.out.println(person);
                     memory.putPersonToMap(person);
-                    System.out.println(memory.getDump());
-                    System.out.println(memory.dump.size());
+//                    System.out.println(memory.getDump());
+//                    System.out.println(memory.dump.size());
                 }
 
                 case 2 -> {
@@ -50,8 +50,8 @@ public class Menu {
                 }
 
                 case 3 -> memory.printMap();
-                case 4 -> memory.saveTasks();
-                case 5 -> memory.loadTasks();
+                case 4 -> file.saveTasks();
+                case 5 -> file.loadTasks();
                 case 0 -> flag = false;
             }
         }

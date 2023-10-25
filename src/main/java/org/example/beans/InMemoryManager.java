@@ -18,9 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class InMemoryManager implements EnvMemoryHolder {
 
-    private final InFileManager file;
-
-    public final Map<String, Person> dump = new HashMap<>();
+    public static final Map<String, Person> dump = new HashMap<>();
 
 
     @Value("{app.env}")
@@ -44,12 +42,12 @@ public class InMemoryManager implements EnvMemoryHolder {
     //todo логику загрузки из файла в мапу
     @Override
     public void loadTasks() {
-        file.loadTasks();
+
     }
 
     //todo логику загрузки из мапы в файл
     @Override
     public void saveTasks() {
-        file.saveTasks();
+
     }
 }

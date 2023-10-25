@@ -23,7 +23,7 @@ public class InMemoryConfig {
 
     @Bean
     public EnvMemoryHolder memoryHolder() {
-        return new InMemoryManager(file);
+        return new InMemoryManager();
     }
 
     @Bean
