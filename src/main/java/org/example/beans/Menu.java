@@ -41,6 +41,7 @@ public class Menu {
                     System.out.println(person);
                     memory.putPersonToMap(person);
                     System.out.println(memory.getDump());
+                    System.out.println(memory.dump.size());
                 }
 
                 case 2 -> {

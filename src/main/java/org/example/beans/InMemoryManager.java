@@ -20,7 +20,7 @@ public class InMemoryManager implements EnvMemoryHolder {
 
     private final InFileManager file;
 
-    private final Map<String, Person> dump = new HashMap<>();
+    public final Map<String, Person> dump = new HashMap<>();
 
 
     @Value("{app.env}")
