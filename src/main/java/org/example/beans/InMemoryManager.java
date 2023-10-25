@@ -23,22 +23,30 @@ public class InMemoryManager implements EnvMemoryHolder {
     @Value("{app.env}")
     public String env;
 
-
-    public void removeByEmail() {
-
-
+    public void printMap() {
+        for (Person i: dump.values()) {
+            System.out.println(i);
+        }
     }
 
+    public void removeByEmail(String email) {
+        dump.remove(email);
+    }
+
+    public void putPersonToMap(Person person) {
+        dump.put(person.getEmail(), person);
+        System.out.println("person on the map, the key is: " + dump.get(person).getEmail());
+    }
+
+    //todo логику загрузки из файла в мапу
     @Override
     public void loadTasks() {
         System.out.println("load from memory");
     }
 
+    //todo логику загрузки из мапы в файл
     @Override
     public void saveTasks() {
 
     }
-
-
-    //todo логику хранилища в памяти
 }
