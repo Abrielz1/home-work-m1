@@ -15,8 +15,6 @@ public class Menu {
 
    private Scanner scanner  = new Scanner(System.in);
 
-    //todo написать меню и его обработку
-
     private Boolean flag = true;
 
 
@@ -37,7 +35,7 @@ public class Menu {
                             then enter phone number (like +8@@@@@@@) in 8digits and 
                             at last email
                             """);
-                    Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
+                    Person person = new Person(personInput, personInput, personInput);
                     System.out.println(person);
                     memory.putPersonToMap(person);
                     System.out.println(memory.getDump());
@@ -57,7 +55,6 @@ public class Menu {
         }
     }
 
-    //todo
     public static void menu() {
         System.out.println("Здравствуйте!");
         System.out.println("Что вы хотите сделать? ");
