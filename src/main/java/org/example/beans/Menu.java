@@ -8,9 +8,6 @@ public class Menu {
 
     Scanner scanner  = new Scanner(System.in);
 
-    int userInput = scanner.nextInt();
-
-    String personInput = scanner.nextLine();
 
     //todo написать меню и его обработку
 
@@ -21,6 +18,10 @@ public class Menu {
 
     public void printMenu() {
         while(flag) {
+
+            int userInput = scanner.nextInt();
+
+            String personInput = scanner.nextLine();
             menu();
 
             switch (userInput) {
