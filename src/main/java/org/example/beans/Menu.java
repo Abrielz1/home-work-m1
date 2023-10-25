@@ -38,8 +38,9 @@ public class Menu {
                             at last email
                             """);
                     Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
+                    System.out.println(person);
                     memory.putPersonToMap(person);
-                 //   System.out.println("Person with e-email: " + person.getEmail() + "person personal info was created: " + person);
+                    System.out.println(memory.getDump());
                 }
                 case 2 -> System.out.println("2");
                 case 3 -> System.out.println("3");
