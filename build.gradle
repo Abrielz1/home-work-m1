@@ -16,6 +16,7 @@ dependencies {
     implementation("org.springframework:spring-context:6.0.8")
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    implementation group: 'jakarta.validation', name: 'jakarta.validation-api', version: '3.0.2'
 }
 
 test {

@@ -11,7 +11,6 @@ public class LoadFromFile {
         this.file = file;
     }
 
-    @PostConstruct
     public void loadingAuto() {
         file.loadPersons();
     }
