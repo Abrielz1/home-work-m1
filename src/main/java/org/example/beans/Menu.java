@@ -21,9 +21,9 @@ public class Menu {
     public void printMenu() {
         while(flag) {
 
-            int userInput = scanner.nextInt();
-
             menu();
+
+            int userInput = scanner.nextInt();
 
             switch (userInput) {
                 case 1 -> {
@@ -45,7 +45,9 @@ public class Menu {
                 case 3 -> memory.printMap();
                 case 4 -> file.saveTasks();
                 case 5 -> file.loadPersons();
-                case 0 -> flag = false;
+                case 0 -> {file.saveTasks();
+                    flag = false;
+                }
             }
         }
     }
