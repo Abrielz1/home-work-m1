@@ -1,20 +1,14 @@
 package org.example.beans;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
-
 import java.util.Scanner;
 
 @Component
 @RequiredArgsConstructor
-@Validated
 public class Menu {
 
     private final InFileManager file;
@@ -23,11 +17,14 @@ public class Menu {
 
    private Scanner scanner  = new Scanner(System.in);
 
+    Pattern patternPhone = Pattern.compile("\\+\\d(-\\d{3})-{2}-\\d{4}");
+
+    Pattern patternEmail = Pattern.compile("\\+\\d(-\\d{3}){2}-\\d{4}");
+
     private Boolean flag = true;
 
 
     public void printMenu() {
-
 
         while (flag) {
 
@@ -48,37 +45,35 @@ public class Menu {
                             at last email
                             """);
 
-//                    System.out.println("name is -");
-//                    String name = scanner.nextLine();
-//
-//                    System.out.println("phone is -");
-//                    String phone = scanner.nextLine();
-//
-//                    System.out.println("phone is -");
-//                    String email = scanner.nextLine();
-
                         System.out.println("name is -");
 
-                        @NotBlank
                         String name = scanner.next();
 
+                        if (name.isBlank()) {
+                            name = scanner.next();
+                        }
 
                         System.out.println("phone is -");
 
-                        @Pattern(regexp = "\\+\\d(-\\d{3}){2}-\\d{4}", message = "Phone is incorrect")
-                        @NotBlank
                         String phone = scanner.next();
 
+                        Matcher matcherPhone = patternPhone.matcher(phone);
+
+                        if (!matcherPhone.find()) {
+                            phone = scanner.next();
+                        }
+
                         System.out.println("email is -");
-                        @Pattern(regexp = "^(.+)@(S+) $.", message = "Email is incorrect")
-                        @Email(message = "Некорректный email")
+
                         String email = scanner.next();
 
-                        //    Person person = new Person(name, phone, email);
-                        //   System.out.println(person);
-                        memory.putPersonToMap(new Person(name, phone, email));
+                        Matcher matcherEmail = patternEmail.matcher(phone);
 
-                        // memory.putPersonToMap(new Person(name, phone, email));
+                        if (!matcherEmail.find()) {
+                            phone = scanner.next();
+                        }
+
+                        memory.putPersonToMap(new Person(name, phone, email));
                     }
 
                     case 2 -> {
@@ -89,7 +84,8 @@ public class Menu {
                     case 3 -> memory.printMap();
                     case 4 -> file.saveTasks();
                     case 5 -> file.loadPersons();
-                    case 0 -> { //file.saveTasks();
+                    case 0 -> {
+                        file.saveTasks();
                         flag = false;
                     }
                 }
