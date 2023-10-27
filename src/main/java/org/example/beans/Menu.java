@@ -88,12 +88,13 @@ public class Menu {
 
                             System.out.println(matcherPhone.matches());
                             System.out.println("не подходящий формат записи!");
+
                             phone = scanner.next();
                         }
 
                         System.out.println("phone is: " + phone);
 
-                        System.out.println("email is -");
+                        System.out.println("email is - ");
 
                         String email = scanner.next();
 
@@ -117,7 +118,7 @@ public class Menu {
                         System.out.println("If you want to remove person, enter his/her email");
                         String email = scanner.next();
 
-                        if (!memory.getDump().containsKey(memory.getDump().get(email))) {
+                        if (!memory.getDump().containsKey(memory.getDump().get(email)) || memory.getDump().isEmpty()) {
                             System.out.println("Person is no found!");
                         }
 
