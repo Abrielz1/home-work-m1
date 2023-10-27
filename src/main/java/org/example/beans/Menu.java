@@ -8,10 +8,13 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
 import java.util.Scanner;
 
 @Component
 @RequiredArgsConstructor
+@Validated
 public class Menu {
 
     private final InFileManager file;
