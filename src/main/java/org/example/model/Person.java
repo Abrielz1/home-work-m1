@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Person {
 
-    @NotBlank
-    private String fullName;
+   @NotBlank
+   private String fullName;
 
     @NotBlank
     @Pattern(regexp = "\\+\\d(-\\d{3}){2}-\\d{4}", message = "Phone is incorrect")

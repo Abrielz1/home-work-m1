@@ -1,5 +1,8 @@
 package org.example.beans;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
 import org.springframework.stereotype.Component;
@@ -19,38 +22,80 @@ public class Menu {
 
 
     public void printMenu() {
-        while(flag) {
 
-            menu();
 
-            int userInput = scanner.nextInt();
+        while (flag) {
 
-            switch (userInput) {
-                case 1 -> {
+            try {
+
+                menu();
+
+                int userInput = scanner.nextInt();
+
+                switch (userInput) {
+
+                    case 1 -> {
+
                     System.out.println("""
                             Please enter Person's personal info in fields:
                             1st Enter persons full name,
-                            then enter phone number (like +8@@@@@@@) in 8digits and 
+                            then enter phone number (like +8@@@@@@@) in 8digits and
                             at last email
                             """);
-                    Person person = new Person(scanner.nextLine(), scanner.nextLine(), scanner.nextLine());
-                    memory.putPersonToMap(person);
-                }
 
-                case 2 -> {
-                    System.out.println("If you want to remove person, enter his/her email");
-                    memory.removeByEmail(scanner.nextLine());
-                }
+//                    System.out.println("name is -");
+//                    String name = scanner.nextLine();
+//
+//                    System.out.println("phone is -");
+//                    String phone = scanner.nextLine();
+//
+//                    System.out.println("phone is -");
+//                    String email = scanner.nextLine();
 
-                case 3 -> memory.printMap();
-                case 4 -> file.saveTasks();
-                case 5 -> file.loadPersons();
-                case 0 -> {file.saveTasks();
-                    flag = false;
+                        System.out.println("name is -");
+
+                        @NotBlank
+                        String name = scanner.next();
+
+
+                        System.out.println("phone is -");
+
+                        @Pattern(regexp = "\\+\\d(-\\d{3}){2}-\\d{4}", message = "Phone is incorrect")
+                        @NotBlank
+                        String phone = scanner.next();
+
+
+                        System.out.println("email is -");
+                        @Pattern(regexp = "^(.+)@(S+) $.", message = "Email is incorrect")
+                        @Email(message = "Некорректный email")
+                        String email = scanner.next();
+
+                        //    Person person = new Person(name, phone, email);
+                        //   System.out.println(person);
+                        memory.putPersonToMap(new Person(name, phone, email));
+
+                        // memory.putPersonToMap(new Person(name, phone, email));
+                    }
+
+                    case 2 -> {
+                        System.out.println("If you want to remove person, enter his/her email");
+                        memory.removeByEmail(scanner.nextLine());
+                    }
+
+                    case 3 -> memory.printMap();
+                    case 4 -> file.saveTasks();
+                    case 5 -> file.loadPersons();
+                    case 0 -> { //file.saveTasks();
+                        flag = false;
+                    }
                 }
+            } catch (Exception ex) {
+                System.out.println("Please enter an integer value between 1 and 5 or 0" );
+                scanner.next();
             }
         }
     }
+
     public static void menu() {
         System.out.println("Здравствуйте!");
         System.out.println("Что вы хотите сделать? ");

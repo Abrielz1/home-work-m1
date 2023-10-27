@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Master {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(DefaultAppConfig.class);
-       context.getBean(LoadFromFile.class).loadingAuto();
+       context.getBean(LoadFromFile.class);
        context.getBean(Profiler.class).doWork();
     }
 }

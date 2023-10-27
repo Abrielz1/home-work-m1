@@ -18,7 +18,6 @@ import java.util.List;
 @Component
 @Data
 @Primary
-
 public class InFileManager implements EnvMemoryHolder {
 
     private InMemoryManager manager;
