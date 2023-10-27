@@ -1,8 +1,10 @@
 package org.example.beans;
 
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
 import org.springframework.stereotype.Component;
@@ -63,7 +65,6 @@ public class Menu {
                         @Pattern(regexp = "\\+\\d(-\\d{3}){2}-\\d{4}", message = "Phone is incorrect")
                         @NotBlank
                         String phone = scanner.next();
-
 
                         System.out.println("email is -");
                         @Pattern(regexp = "^(.+)@(S+) $.", message = "Email is incorrect")
