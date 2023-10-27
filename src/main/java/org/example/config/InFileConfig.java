@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySources;
 
 @Configuration
 @PropertySources(value = @PropertySource("classpath:application-in-file.properties"))
-@Profile("file")
+
 @RequiredArgsConstructor
 public class InFileConfig {
 

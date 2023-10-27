@@ -37,6 +37,11 @@ public class Menu {
 
                 int userInput = scanner.nextInt();
 
+                if (userInput > 5 || userInput < 0) {
+                    System.out.println("Please enter an integer value between 1 and 5 or 0");
+                    userInput = scanner.nextInt();
+                }
+
                 switch (userInput) {
 
                     case 1 -> {
@@ -102,7 +107,13 @@ public class Menu {
 
                     case 2 -> {
                         System.out.println("If you want to remove person, enter his/her email");
-                        memory.removeByEmail(scanner.nextLine());
+                        String email = scanner.next();
+                        if (!memory.getDump().containsKey(memory.getDump().get(email))) {
+                            System.out.println("Person is no found!");
+                        }
+                        System.out.println("person to remove:" + memory.getDump().get(email));;
+                        memory.removeByEmail(email);
+                        System.out.println(memory.getDump());
                     }
 
                     case 3 -> memory.printMap();
