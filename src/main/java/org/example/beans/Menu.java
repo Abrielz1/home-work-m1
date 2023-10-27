@@ -85,7 +85,10 @@ public class Menu {
                         Matcher matcherPhone = patternPhone.matcher(phone);
 
                         while (!matcherPhone.find()) {
+
                             phone = scanner.next();
+                            System.out.println(matcherPhone.matches());
+                            System.out.println("не подходящий формат записи!");
                         }
 
                         System.out.println("phone is: " + phone);
@@ -97,7 +100,10 @@ public class Menu {
                         Matcher matcherEmail = patternEmail.matcher(email);
 
                         while (!matcherEmail.find()) {
+
                             phone = scanner.next();
+                            System.out.println(matcherPhone.matches());
+                            System.out.println("не подходящий формат записи!");
                         }
 
                         System.out.println("email is: " + email);
@@ -106,11 +112,14 @@ public class Menu {
                     }
 
                     case 2 -> {
+
                         System.out.println("If you want to remove person, enter his/her email");
                         String email = scanner.next();
+
                         if (!memory.getDump().containsKey(memory.getDump().get(email))) {
                             System.out.println("Person is no found!");
                         }
+
                         System.out.println("person to remove:" + memory.getDump().get(email));;
                         memory.removeByEmail(email);
                         System.out.println(memory.getDump());
