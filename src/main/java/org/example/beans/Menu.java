@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.example.model.Person;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
+@Scope("singleton")
 @RequiredArgsConstructor
 public class Menu {
 
@@ -15,11 +17,12 @@ public class Menu {
 
     private final InMemoryManager memory;
 
-   private Scanner scanner  = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    Pattern patternPhone = Pattern.compile("\\+\\d(-\\d{3})-{2}-\\d{4}");
+    Pattern patternPhone =
+    Pattern.compile("\\+7\\(\\d{3}\\)\\d{3}\\-\\d{2}\\-\\d{2}");
 
-    Pattern patternEmail = Pattern.compile("\\+\\d(-\\d{3}){2}-\\d{4}");
+    Pattern patternEmail = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 
     private Boolean flag = true;
 
@@ -38,40 +41,61 @@ public class Menu {
 
                     case 1 -> {
 
-                    System.out.println("""
-                            Please enter Person's personal info in fields:
-                            1st Enter persons full name,
-                            then enter phone number (like +8@@@@@@@) in 8digits and
-                            at last email
-                            """);
+                        System.out.println("""
+                                Please enter Person's personal info in fields:
+                                
+                                1st Enter persons full name like John Doe,
+                                then enter phone number like +7(952)555-22-13
+                                and at last email example of:
+                                
+                                1.  prettyandsimple@example.com
+                                2.  very.common@example.com
+                                3.  disposable.style.email.with+symbol@example.com
+                                4.  other.email-with-dash@example.com
+                                9.  #!$%&'*+-/=?^_`{}|~@example.org
+                                6.  "()[]:,;@\\\\\\"!#$%&'*+-/=?^_`{}| ~.a"@example.org
+                                7.  " "@example.org (space between the quotes)
+                                8.  üñîçøðé@example.com (Unicode characters in local part)
+                                9.  üñîçøðé@üñîçøðé.com (Unicode characters in domain part)
+                                10. Pelé@example.com (Latin)
+                                11. δοκιμή@παράδειγμα.δοκιμή (Greek)
+                                12. 我買@屋企.香港 (Chinese)
+                                13. 甲斐@黒川.日本 (Japanese)
+                                14. чебурашка@ящик-с-апельсинами.рф (Cyrillic)
+                                """);
 
                         System.out.println("name is -");
 
-                        String name = scanner.next();
+                        String name = scanner.nextLine();
 
                         if (name.isBlank()) {
-                            name = scanner.next();
+                            name = scanner.nextLine();
                         }
 
-                        System.out.println("phone is -");
+                        System.out.println("name is:" + name);
 
+                        System.out.println("phone is -");
                         String phone = scanner.next();
 
                         Matcher matcherPhone = patternPhone.matcher(phone);
 
-                        if (!matcherPhone.find()) {
+                        while (!matcherPhone.find()) {
                             phone = scanner.next();
                         }
+
+                        System.out.println("phone is: " + phone);
 
                         System.out.println("email is -");
 
                         String email = scanner.next();
 
-                        Matcher matcherEmail = patternEmail.matcher(phone);
+                        Matcher matcherEmail = patternEmail.matcher(email);
 
-                        if (!matcherEmail.find()) {
+                        while (!matcherEmail.find()) {
                             phone = scanner.next();
                         }
+
+                        System.out.println("email is: " + email);
 
                         memory.putPersonToMap(new Person(name, phone, email));
                     }
@@ -85,12 +109,12 @@ public class Menu {
                     case 4 -> file.saveTasks();
                     case 5 -> file.loadPersons();
                     case 0 -> {
-                        file.saveTasks();
+                        // file.saveTasks();
                         flag = false;
                     }
                 }
             } catch (Exception ex) {
-                System.out.println("Please enter an integer value between 1 and 5 or 0" );
+                System.out.println("Please enter an integer value between 1 and 5 or 0");
                 scanner.next();
             }
         }

@@ -5,5 +5,4 @@ public interface EnvMemoryHolder {
     void loadPersons();
 
     void saveTasks();
-
 }

@@ -1,11 +1,12 @@
 package org.example.beans;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
+@Scope("singleton")
 public class LoadFromFile {
 
     InFileManager file;
@@ -19,8 +20,10 @@ public class LoadFromFile {
         file.loadPersons();
     }
 
+
     @PreDestroy
     public void saveToFile() {
+        System.out.println("saving to file");
         file.saveTasks();
     }
 }
