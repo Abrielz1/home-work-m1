@@ -19,8 +19,7 @@ public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
 
-    Pattern patternPhone =
-    Pattern.compile("\\+7\\(\\d{3}\\)\\d{3}\\-\\d{2}\\-\\d{2}");
+    Pattern patternPhone = Pattern.compile("^(\\+|\\d)[0-9]{7,16}$");// Pattern.compile("\\+7\\(\\d{3}\\)\\d{3}\\-\\d{2}\\-\\d{2}");
 
     Pattern patternEmail = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 
