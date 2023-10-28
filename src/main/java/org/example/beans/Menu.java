@@ -86,10 +86,11 @@ public class Menu {
 
                         while (!matcherPhone.find()) {
 
-                            System.out.println(matcherPhone.matches());
                             System.out.println("не подходящий формат записи!");
-
+                            System.out.println(matcherPhone.matches());
                             phone = scanner.next();
+                            matcherPhone = patternPhone.matcher(phone);
+
                         }
 
                         System.out.println("phone is: " + phone);
@@ -105,6 +106,7 @@ public class Menu {
                             System.out.println(matcherPhone.matches());
                             System.out.println("не подходящий формат записи!");
                             phone = scanner.next();
+                            matcherEmail = patternEmail.matcher(email);
 
                         }
 
