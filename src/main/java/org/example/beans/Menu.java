@@ -130,10 +130,7 @@ public class Menu {
                     case 3 -> memory.printMap();
                     case 4 -> file.saveTasks();
                     case 5 -> file.loadPersons();
-                    case 0 -> {
-                        // file.saveTasks();
-                        flag = false;
-                    }
+                    case 0 -> flag = false;
                 }
             } catch (Exception ex) {
                 System.out.println("Please enter an integer value between 1 and 5 or 0");
