@@ -120,7 +120,7 @@ public class Menu {
                         String email = scanner.next();
 
                         if (!memory.getDump().containsKey(memory.getDump().get(email)) || memory.getDump().isEmpty()) {
-                            System.out.println("Person is no found!");
+                            System.out.println("Person is not found!");
                         }
 
                         System.out.println("person to remove:" + memory.getDump().get(email));;
@@ -133,7 +133,6 @@ public class Menu {
                     case 5 -> file.loadPersons();
                     case 0 -> {
                         file.saveTasks();
-                        file.loadPersons();
                         flag = false;
                     }
                 }
