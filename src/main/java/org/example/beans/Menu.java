@@ -19,7 +19,7 @@ public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
 
-    Pattern patternPhone = Pattern.compile("^(\\+|\\d)[0-9]{7,16}$");// Pattern.compile("\\+7\\(\\d{3}\\)\\d{3}\\-\\d{2}\\-\\d{2}");
+    Pattern patternPhone = Pattern.compile("^(\\+|\\d)[0-9]{7,16}$");
 
     Pattern patternEmail = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 
@@ -104,7 +104,7 @@ public class Menu {
 
                             System.out.println(matcherPhone.matches());
                             System.out.println("не подходящий формат записи!");
-                            phone = scanner.next();
+                            email = scanner.next();
                             matcherEmail = patternEmail.matcher(email);
 
                         }
@@ -131,7 +131,11 @@ public class Menu {
                     case 3 -> memory.printMap();
                     case 4 -> file.saveTasks();
                     case 5 -> file.loadPersons();
-                    case 0 -> flag = false;
+                    case 0 -> {
+                        file.saveTasks();
+                        file.loadPersons();
+                        flag = false;
+                    }
                 }
             } catch (Exception ex) {
                 System.out.println("Please enter an integer value between 1 and 5 or 0");
